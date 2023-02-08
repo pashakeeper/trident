@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-v4-rtl/4.6.2-1/css/bootstrap.min.css" integrity="sha512-NrKZWxJKkRtK6smeXkYtFsgPIrTqWTjaJ6gcZKjb9jwNSJs9r2NY4GcEYhTBQDM1GUNlcbqQVYogz/GjwO/LHA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <title>Trident</title>
+  </head>
+  <body>
+
+
+    <!-- header -->
+    <header class="header" id="header">
+      <div class="container h-100">
+        <div class="row h-100 align-items-center">
+          <div class="col-lg-2 col-sm-6 col-6">
+            <a href="#" class="logo">
+              <img src="./img/logo.svg" alt="Logo">
+            </a>
+          </div>
+          <div class="col-lg-8 menu_box">
+              <ul class="nav">
+                <li class="current"><a href="#">Home</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li class="has_child">
+                  <a href="#">Styles</a>
+                  <ul class="sub-menu">
+                    <li><a href="#">Garden rooms</a></li>
+                    <li><a href="#">Modular houses</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Interior</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+          </div>
+          <div class="col-lg-2 col-sm-6 col-6 position-relative">
+            <div class="burger"></div>
+            <div class="yellow_box">
+              <b>Order</b> 
+              <p>Catalogue</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container mobile_container">
+        <div class="row">
+          <div class="mobile_yellow__box">
+            Order trident Catalogue
+            <img src="./img/arrow-right.svg" alt="Arrow">
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- end of header -->
+
+    <!-- Galery section  -->
+<section class="galery_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 d-flex flex-wrap align-items-center">
+                <h2>Gallery</h2>
+                <div class="model_filter">
+                    <select name="model" id="model_filter" aria-placeholder="asdasd">
+                        <option value="0">Chose model</option>
+                        <option value="1">Model 1</option>
+                        <option value="2">Model 2</option>
+                        <option value="3">Model 3</option>
+                        <option value="4">Model 4</option>
+                    </select>
+                </div>
+                <div class="interior_filter">
+                    <select name="interior" id="interior_filter">
+                        <option value="0">Choose interior</option>
+                        <option value="1">Interior 1</option>
+                        <option value="2">Interior 2</option>
+                        <option value="3">Interior 3</option>
+                        <option value="4">Interior 4</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="galery_box">
+                    <img src="./img/galery/img1.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="galery_box">
+                    <img src="./img/galery/img2.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="galery_box">
+                    <img src="./img/galery/img3.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="galery_box">
+                    <img src="./img/galery/img4.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="galery_box">
+                    <img src="./img/galery/img5.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="galery_box">
+                    <img src="./img/galery/img6.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="galery_box">
+                    <img src="./img/galery/img7.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="galery_box">
+                    <img src="./img/galery/img8.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="galery_box">
+                    <img src="./img/galery/img9.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="galery_box">
+                    <img src="./img/galery/img10.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="galery_box">
+                    <img src="./img/galery/img11.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="galery_box">
+                    <img src="./img/galery/img12.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="popup">
+        <div class="close"><img src="./img/close_burger.svg" alt=""></div>
+        <div class="popup_image_box">
+            <img src="" alt="">
+        </div>
+    </div>
+
+<div id="overlay"></div>
+</section>
+    <!-- end of galery section -->
+
+
+    
+
+
+
+
+    
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3">
+              <a href="#" class="footer_logo">
+                <img src="./img/footer_logo.svg" alt="">
+              </a>
+              <ul class="info_list">
+                <li><i class="fa fa-map-marker-alt"></i>111A T. Shevchenko</li>
+                <li><i class="fa fa-phone-volume"></i><a href="tel:00546272444">0054-6272444</a></li>
+                <li><i class="fa fa-envelope"></i><a href="mailto:Info@mail.com">Info@mail.com</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-3 footer_menu__box">
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Interior</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-3 footer_menu__box">
+              <ul>
+                <li><a href="#">Garden House</a></li>
+                <li><a href="#">Garden Salon</a></li>
+                <li><a href="#">Commercial Workspace</a></li>
+                <li><a href="#">Lake House</a></li>
+                <li><a href="#">Forest House</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-3 footer_menu__box">
+              <ul>
+                <li><a href="#">Barn House</a></li>
+                <li><a href="#">Style</a></li>
+                <li><a href="#">Style</a></li>
+                <li><a href="#">Style</a></li>
+                <li><a href="#">Style</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row social_row">
+            <div class="col-lg-3">
+                  <ul class="nav justify-content-between">
+                    <li>© Trident 2023</li>
+                    <li><a href="#">Privacy Policy</a></li>
+                  </ul>
+            </div>
+            <div class="col-lg-3 social_nav__box">
+                <ul class="nav">
+                  <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                  <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    <!-- end of footer -->
+
+
+
+
+
+    
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js" integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js" integrity="sha512-NqYds8su6jivy1/WLoW8x1tZMRD7/1ZfhWG/jcRQLOzV1k1rIODCpMgoBnar5QXshKJGV7vi0LXLNXPoFsM5Zg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
