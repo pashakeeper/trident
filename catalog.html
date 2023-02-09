@@ -63,91 +63,129 @@
     </header>
     <!-- end of header -->
 
-    <!-- choose section  -->
-    <section class="choose_section" id="choose_section">
+    <!-- catalog section  -->
+    <section class="catalog_section" id="catalog_section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 d-flex flex-wrap align-items-center pre_header">
-                    <h2>Interior</h2>
+                    <h2>Catalog</h2>
                     <p>You can choose design that you like</p>
-                </div>
-                <div class="col-lg-12">
-                    <ul class="nav house_tab" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                          <a class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">STANDARD</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                          <a class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">MEDITERRANEAN</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="scandinavian-tab" data-bs-toggle="tab" data-bs-target="#scandinavian" type="button" role="tab" aria-controls="profile" aria-selected="false">SCANDINAVIAN </a>
-                          </li>
-                      </ul>
-                </div>
-                <div class="col-lg-12">
-                    <div class="tab-content" id="houseTabs">
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                          <div class="row">
-                            <div class="col-lg-6">
-                                <h2>STANDARD</h2>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into ele
-                                ctronic typesetting, remaining essentially unchanged.</p>
-                                <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="interior_slider">
-                                    <div class="slide">
-                                        <img src="./img/interior_slide1.jpg" alt="">
-                                    </div>
-                                    <div class="slide">
-                                        <img src="./img/interior_slide2.jpg" alt="">
-                                    </div>
-                                    <div class="slide">
-                                        <img src="./img/interior_slide3.jpg" alt="">
-                                    </div>
-                                    <div class="slide">
-                                        <img src="./img/interior_slide3.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="interior_nav">
-                                  <div class=" interior_prev custom_nav" style=""><i class="fa fa-angle-left"></i></div>
-                                  <div class=" interior_next custom_nav" style=""><i class="fa fa-angle-right"></i></div>
-                                </div>
-                                <div class="interior_slider_thumb">
-                                    <div class="slide">
-                                        <img src="./img/interior_slide1.jpg" alt="">
-                                    </div>
-                                    <div class="slide">
-                                        <img src="./img/interior_slide2.jpg" alt="">
-                                    </div>
-                                    <div class="slide">
-                                        <img src="./img/interior_slide3.jpg" alt="">
-                                    </div>
-                                    <div class="slide">
-                                        <img src="./img/interior_slide3.jpg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                          </div>
+                    <div class="moblie_triger">
+                        <div class="mob_filter">FILTER</div>
+                        <div class="sort">
+                            <select class="sort_price" name="sort_price" id="sort_price">
+                                <option value="0">Sort by price</option>
+                                <option value="1">Price1</option>
+                                <option value="2">Price2</option>
+                                <option value="3">Price3</option>
+                                <option value="4">Price4</option>
+                            </select>
                         </div>
-                        
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                          2
+                    </div>
+                </div>
+                <div class="col-lg-4 filter_box">
+                    <div class="filter_head">Search </div><div class="filter_close"><img src="./img/close_burger.svg"></div>
+                    <div class="fiter_header">House type</div>
+                    <div class="form_box checkboxes">
+                        <input type="checkbox" id="bungalo">
+                        <label for="bungalo">Bungalows</label>
+                        <input type="checkbox" id="1.5-storey">
+                        <label for="1.5-storey">1.5-storey houses</label>
+                        <input type="checkbox" id="2-storey">
+                        <label for="2-storey">2-storey houses</label>
+                        <input type="checkbox" id="Garages">
+                        <label for="Garages">Garages and carports</label>
+                    </div>
+                    <div class="fiter_header">Special house designs</div>
+                    <div class="form_box">
+                        <input type="checkbox" id="Graven">
+                        <label for="Graven">Graven Hill</label>
+                    </div>
+                    <div class="fiter_header">Usable area</div>
+                    <div class="form_box range">
+                        <input type="number" placeholder="From"  min="1" max="100"> - <input type="number" placeholder="To"  min="1" max="100">
+                    </div>
+                    <div class="fiter_header">Number of rooms</div>
+                    <div class="form_box range">
+                        <input type="number" placeholder="From" min="1" max="100"> - <input type="number" placeholder="To" min="1" max="100">
+                    </div>
+                    <div class="fiter_header">Number of bathrooms</div>
+                    <div class="form_box num">
+                        <input type="number" placeholder="Choose number" min="1" max="100">
+                    </div>
+                    <div class="fiter_header">Garage</div>
+                    <div class="form_box garage">
+                        <input type="checkbox" id="yes">
+                        <label for="yes">Yes</label>
+                        <input type="checkbox" id="no">
+                        <label for="no">No</label>
+                    </div>
+                    <div class="action_row">
+                        <a href="#" class="clear">Clear</a>
+                        <button type="submit" class="filter">Filter</button>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="sort">
+                        <select class="sort_price" name="sort_price" id="sort_price">
+                            <option value="0">Sort by price</option>
+                            <option value="1">Price1</option>
+                            <option value="2">Price2</option>
+                            <option value="3">Price3</option>
+                            <option value="4">Price4</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 item_box">
+                            <img src="./img/house_slide1.jpg" alt="">
+                            <h3 class="house_name">Garden Salon</h3>
+                            <p class="house_description">A room where you can work, study, and design</p>
                         </div>
-                        <div class="tab-pane fade" id="scandinavian" role="tabpanel" aria-labelledby="profile-tab">
-                            3
-                          </div>
-                        
-                      </div>
+                        <div class="col-lg-6 item_box">
+                            <img src="./img/house_slide2.jpg" alt="">
+                            <h3 class="house_name">Garden Salon</h3>
+                            <p class="house_description">A room where you can work, study, and design</p>
+                        </div>
+                        <div class="col-lg-6 item_box">
+                            <img src="./img/house_slide3.jpg" alt="">
+                            <h3 class="house_name">Garden Salon</h3>
+                            <p class="house_description">A room where you can work, study, and design</p>
+                        </div>
+                        <div class="col-lg-6 item_box">
+                            <img src="./img/house_slide1.jpg" alt="">
+                            <h3 class="house_name">Garden Salon</h3>
+                            <p class="house_description">A room where you can work, study, and design</p>
+                        </div>
+                        <div class="col-lg-6 item_box">
+                            <img src="./img/house_slide2.jpg" alt="">
+                            <h3 class="house_name">Garden Salon</h3>
+                            <p class="house_description">A room where you can work, study, and design</p>
+                        </div>
+                    </div>
+                    <div class="pagination">
+                        <ul class="nav">
+                            <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
+                            <li><a href="#">1</a></li>
+                            <li class="active"><a href="#">2</a></li>
+                            <li><a href="#">...</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- end of choose section -->
+    <!-- end of catalog section  -->
 
 
 
+
+
+
+
+
+    
     <!-- Footer -->
     <footer class="footer" id="footer">
         <div class="container">
