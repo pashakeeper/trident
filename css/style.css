@@ -1661,11 +1661,11 @@ section h2 {
   cursor: pointer;
 }
 .interior_box .nav li:hover {
-  transform: rotate3d(1, 0, 1, 360deg);
-  -webkit-transform: rotate3d(1, 0, 1, 360deg);
-  -moz-transform: rotate3d(1, 0, 1, 360deg);
-  -ms-transform: rotate3d(1, 0, 1, 360deg);
-  -o-transform: rotate3d(1, 0, 1, 360deg);
+ transform:rotate( -360deg);
+ -webkit-transform:rotate( -360deg);
+ -moz-transform:rotate( -360deg);
+ -ms-transform:rotate( -360deg);
+ -o-transform:rotate( -360deg);
 }
 .interior_box .nav li:last-child {
   margin-right: 0;
