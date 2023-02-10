@@ -66,6 +66,14 @@ $(document).ready(function () {
   let wd = $(window).width();
   if (wd < 990) {
     $(".download_image").attr("src", "./img/download_image_mobile.png");
+    $(".recent, .recomend").slick({
+      infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    lazyLoad: "ondemand",
+    prevArrow: $(".house_prev_garden"),
+    nextArrow: $(".house_next_garden"),
+    });
   }
 
   //   Filter selects
@@ -120,5 +128,34 @@ $(document).ready(function () {
   });
   $(".filter").click(function () {
     $(".filter_box").toggleClass("active");
+  });
+
+
+  // PLay video 
+  $('.play').click(function() {
+    video = '<iframe width="100%" height="323" frameborder="0" src="' + $('.video img').attr('data-video') + '"></iframe>';
+    $('.video').replaceWith(video);
+  });
+
+  
+  //  Refresh slider after tab change
+  $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
+    if (wd < 990) {
+      return
+    }
+    else {  
+      $(".house_slider").slick('refresh');
+    }
+    
+    $(".interior_slider").slick('refresh');
+    $(".interior_slider_thumb").slick('refresh');
+  });
+
+// Plans galery 
+  $(".plan_box__image img").click(function () {
+    let src = $(this).attr("src");
+    $(".popup_image_box img").attr("src", src);
+    $(".popup").fadeIn();
+    $("#overlay").fadeIn();
   });
 });
