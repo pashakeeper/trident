@@ -170,6 +170,8 @@ section h2 {
   -o-transition: all 0.4s ease;
   cursor: pointer;
   margin-left: auto;
+  position: relative;
+  z-index: 200;
 }
 .burger.active {
   background: url(../img/close_burger.svg);
@@ -354,6 +356,11 @@ section h2 {
   text-transform: uppercase;
   border: 1px solid #f4d059;
   position: relative;
+  transition: all .5s ease;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  -o-transition: all .5s ease;
 }
 .house_tab li a::after {
   content: "";
@@ -362,20 +369,9 @@ section h2 {
   top: 0;
   height: 100%;
   background: #f4d059;
-  animation: 1s linear 1s infinite alternate woob;
-  -webkit-animation: 1s linear 1s infinite alternate woob;
-}
-
-@keyframes woob {
-  0% {
-    width: 0;
-  }
-  50% {
-    width: 5px;
-  }
-  100% {
-    width: 15px;
-  }
+  width: 0%;
+  z-index: -1;
+  transition: all .5s ease;
 }
 .house_tab {
   margin-bottom: 54px;
@@ -386,6 +382,14 @@ section h2 {
 .house_tab li a:hover {
   background: #f4d059;
   color: #00204a;
+}
+.house_tab li a:hover::after {
+  width: 100%;
+  transition: all .5s ease;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  -o-transition: all .5s ease;
 }
 
 .house_slider .slide {
@@ -2020,7 +2024,8 @@ section h2 {
   }
   .menu_box {
     position: fixed;
-    max-width: 88%;
+    max-width: 100%;
+    padding-top: 20px;
     top: 102px;
     left: -100%;
     transition: all 0.5s ease;
@@ -2033,6 +2038,8 @@ section h2 {
     height: 100%;
     z-index: 200;
     background: #fff;
+    top: 0;
+
   }
   .menu_box.active {
     left: 50%;
@@ -2233,5 +2240,10 @@ section h2 {
 @media (max-width: 444px) {
   .download_section .read_more {
     bottom: -330%;
+  }
+}
+@media (max-width: 359px) {
+  .download_section .read_more {
+    bottom: -270%;
   }
 }

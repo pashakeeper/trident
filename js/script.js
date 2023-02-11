@@ -66,7 +66,7 @@ $(document).ready(function () {
   let wd = $(window).width();
   if (wd < 990) {
     $(".download_image").attr("src", "./img/download_image_mobile.png");
-    $(".recent, .recomend").slick({
+    $(".recent").slick({
       infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -74,8 +74,17 @@ $(document).ready(function () {
     prevArrow: $(".house_prev_garden"),
     nextArrow: $(".house_next_garden"),
     });
+    $(".recomend ").slick({
+      infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    lazyLoad: "ondemand",
+    prevArrow: $(".house_prev_garden_recomend"),
+    nextArrow: $(".house_next_garden_recomend"),
+    });
   }
-
+  
+  
   //   Filter selects
   $(".model_filter select").niceSelect();
   $(".interior_filter select").niceSelect();
