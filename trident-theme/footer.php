@@ -112,7 +112,7 @@
         </div>
       </footer>
     <!-- end of footer -->
-</div>
+
 
 
 

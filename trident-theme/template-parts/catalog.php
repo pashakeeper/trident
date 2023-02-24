@@ -179,19 +179,19 @@
         <div class="row">
 
           <?php
-
+          $currentPage = (get_query_var("paged")) ? get_query_var("paged") : 1;
           $args = array(
 
-            'posts_per_page' => -1,
+            'posts_per_page' => 2,
             'post_type' => 'product',
             'category_name' => '',
+            'paged'          => $currentPage,
             'meta_query' => array(
               'relation' => 'AND',
             )
           );
 
           $all_posts = array();
-
 
 
           $the_query = new WP_Query($args);
@@ -219,47 +219,36 @@
 
               </div>
 
+              <?php array_push($all_posts, $fields); endwhile;?>
 
-
-              <?php array_push($all_posts, $fields); endwhile;
-
-              wp_reset_postdata();
-
-            endif; ?>
-
-          </div>
-
-          <div class="pagination">
-
-            <ul class="nav">
-
-              <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-
-              <li><a href="#">1</a></li>
-
-              <li class="active"><a href="#">2</a></li>
-
-              <li><a href="#">...</a></li>
-
-              <li><a href="#">4</a></li>
-
-              <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-
-            </ul>
-
-          </div>
-
+              <?php wp_reset_postdata(); ?>
+              <div class="pagination">
+           <?php
+           $big = 999999999;
+           echo paginate_links( array(
+            'base' => str_replace( $big, '%#%', get_pagenum_link( $big ) ),
+            'format' => '?paged=%#%',
+            'current' => max( 1, get_query_var('paged') ),
+            'total' => $the_query->max_num_pages,
+            'mid_size'           => 1,
+            'end_size'           => 0,
+            'prev_text' => '<i class="fa fa-angle-left"></i>',
+            'next_text' => '<i class="fa fa-angle-right"></i>'
+          ) );
+          ?>
         </div>
 
+          <?php  endif; ?>
+
+
+          </div>
+          
       </div>
-
     </div>
+  </div>
+</section>
 
-  </section>
-
-  <!-- end of catalog section  -->
-
-
+<!-- end of catalog section  -->
 
 
 
@@ -273,4 +262,6 @@
 
 
 
-  <?php get_footer(); ?>
+
+
+<?php get_footer(); ?>

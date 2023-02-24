@@ -28,7 +28,6 @@
 
 <body <?php body_class(); ?>>
   <?php wp_body_open(); ?>
-  <div id="page" class="site">
 	<!-- header -->
   <?php $header = get_field('header','option');?>
   <header class="header" id="header">
@@ -36,7 +35,12 @@
       <div class="row h-100 align-items-center">
         <div class="col-lg-2 col-sm-6 col-6">
           <a href="/" class="logo">
-            <img src="<?php echo $header['logo']; ?>" alt="Logo">
+            <?php if ($header['logo']): ?>
+                <img src="<?php echo $header['logo']; ?>" alt="Logo">
+            <?php endif; ?>
+            <?php if ($header['logo_svg']): ?>
+              <?php echo $header['logo_svg'] ?>
+            <?php endif; ?>
           </a>
         </div>
         <div class="col-lg-8 menu_box">

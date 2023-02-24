@@ -254,14 +254,16 @@ function ajax_filterposts_handler()
 		$number_rooms_from = esc_attr($_POST['number_rooms_from']);
 		$number_rooms_to = esc_attr($_POST['number_rooms_to']);
 		$number_of_bathrooms = esc_attr($_POST['number_of_bathrooms']);
+		$currentPage = (get_query_var("paged")) ? get_query_var("paged") : 1;
 		$args = array(
 			'post_type' => 'product',
 			'post_status' => 'publish',
+			'paged'          => $currentPage,
 			'posts_per_page' => -1,
 			'meta_query' => array(
-              'relation' => 'AND',
-            )
-		);
+				'relation' => 'AND',
+			)
+		);	
 		
 
 		if ($garage) {
@@ -328,6 +330,7 @@ function ajax_filterposts_handler()
 		$posts = 'No posts found.';
 
 		$the_query = new WP_Query($args);
+		$my_post_count = $the_query->post_count;
 		if ($the_query->have_posts()):
 			while ($the_query->have_posts()):
 				$the_query->the_post(); ?>
@@ -340,9 +343,32 @@ function ajax_filterposts_handler()
 					</p>
 				</div>
 
-			<?php  endwhile;
-			wp_reset_postdata();
-		else:
+			<?php  endwhile;?>
+			<?php if ($my_post_count > 1): ?>
+			<!-- <div class="pagination">
+				<?php
+				$pagenum_link = html_entity_decode( get_pagenum_link() );
+				$url_parts    = explode( '?', $pagenum_link );
+				$pagenum_link = trailingslashit( $url_parts[0] ) . '%_%';
+
+
+
+				$big = 999999999;
+				echo paginate_links( array(
+					'base'               => $pagenum_link,
+					'format' => '?paged=%#%',
+					'current' => max( 1, get_query_var('paged') ),
+					'total' => $the_query->max_num_pages,
+					'mid_size'           => 1,
+					'end_size'           => 0,
+					'prev_text' => '<i class="fa fa-angle-left"></i>',
+					'next_text' => '<i class="fa fa-angle-right"></i>'
+				) );
+				?>
+			</div> -->
+		<?php endif; 
+		wp_reset_postdata(); ?> 
+		<?php else:
 			echo 'No posts found';
 		endif;
 
@@ -361,26 +387,27 @@ function ajax_filterposts_handler()
 			'post_status' => 'publish',
 			'posts_per_page' => -1,
 			'order' => 'ASC',
+			'orderby' => 'item_price',
 			'meta_query' => array(
-              'relation' => 'AND',
-            )
+				'relation' => 'AND',
+			)
 		);
-			array_push($args['meta_query'], array(
-				array(
-					'key' => 'item_price',
-					'value' => '1',
-					'type' => 'numeric',
-					'compare' => '>=',
-				)
-			));
-			array_push($args['meta_query'], array(
-				array(
-					'key' => 'item_price',
-					'value' => '10000000000',
-					'type' => 'numeric',
-					'compare' => '<=',
-				)
-			));
+		array_push($args['meta_query'], array(
+			array(
+				'key' => 'item_price',
+				'value' => array(1, 999999999),
+				'type' => 'numeric',
+				'compare' => 'BETWEEN',
+			)
+		));
+		// array_push($args['meta_query'], array(
+		// 	array(
+		// 		'key' => 'item_price',
+		// 		'value' => '10000000000',
+		// 		'type' => 'numeric',
+		// 		'compare' => '<=',
+		// 	)
+		// ));
 		if ($category != null) {
 			$args['category_name'] = $category;
 		}

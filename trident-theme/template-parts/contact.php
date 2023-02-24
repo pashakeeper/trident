@@ -55,7 +55,7 @@
 
           <?php the_content(); ?>
 
-          <a href="#" class="read_more"
+          <a href="#form_section" class="read_more"
 
           >Get request <img src="<?php echo get_template_directory_uri();?>/img/arrow_white.svg" alt=""
 

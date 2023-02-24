@@ -1,7 +1,8 @@
 $(document).ready(function () {
   // mobile menu
 
-  $(".burger").click(function () {
+  $(".burger").click(function (e) {
+    e.preventDefault();
     $(this).toggleClass("active");
 
     $(".menu_box").toggleClass("active");
@@ -108,9 +109,22 @@ $(document).ready(function () {
       },
     },
     ],
-  });
+  }); 
 
   // end of slider
+
+// Anchor link contct us
+
+  var $page = $('html, body');
+  $('.map_box .read_more').click(function() {
+    $page.animate({
+      scrollTop: $($.attr(this, 'href')).offset().top
+    }, 400);
+    return false;
+  });
+
+
+
 
   //   collapse text SEO
 
@@ -134,14 +148,40 @@ $(document).ready(function () {
     nextArrow: $(".house_next_garden_recomend"),
     responsive: [
     {
-        breakpoint: 990,
-        settings: {
+      breakpoint: 990,
+      settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
         lazyLoad: "ondemand",
         arrows: true,
-        prevArrow: $(".house_prev_garden"),
-        nextArrow: $(".house_next_garden"),
+        prevArrow: $(".house_prev_garden_recomend"),
+        nextArrow: $(".house_next_garden_recomend"),
+      },
+    },
+    ],
+  });
+  $(".recent ").slick({
+    infinite: true,
+
+    slidesToShow: 3,
+
+    slidesToScroll: 1,
+
+    lazyLoad: "ondemand",
+
+    prevArrow: $(".house_prev_garden_recomend"),
+
+    nextArrow: $(".house_next_garden_recomend"),
+    responsive: [
+    {
+      breakpoint: 990,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        lazyLoad: "ondemand",
+        arrows: true,
+        prevArrow: $(".house_prev_garden_recomend"),
+        nextArrow: $(".house_next_garden_recomend"),
       },
     },
     ],
@@ -152,69 +192,17 @@ $(document).ready(function () {
   let wd = $(window).width();
 
   if (wd < 990) {
-    $(".download_image").attr("src","https://tridentmodular.com/wp-content/themes/trident/img/download_image.png");
-
-    $(".recent").slick({
-      infinite: true,
-
-      slidesToShow: 1,
-
-      slidesToScroll: 1,
-
-      lazyLoad: "ondemand",
-
-      prevArrow: $(".house_prev_garden"),
-
-      nextArrow: $(".house_next_garden"),
-    });
-
-    $(".recomend ").slick({
-      infinite: true,
-
-      slidesToShow: 1,
-
-      slidesToScroll: 1,
-
-      lazyLoad: "ondemand",
-
-      prevArrow: $(".house_prev_garden_recomend"),
-
-      nextArrow: $(".house_next_garden_recomend"),
-    });
+    $(".download_image").attr("src","https://tridentmodular.com/wp-content/themes/trident/img/download_image_mobile.png");
+    $(".download_image").attr("src","http://wp/wp-content/themes/trident/img/download_image_mobile.png");
   }
 
   //   Filter selects
 
   $(".model_filter select").niceSelect();
-
   $(".interior_filter select").niceSelect();
 
-  // popup galery images
-
-  $(".galery_box img").click(function () {
-    let src = $(this).attr("src");
-
-    $(".popup_image_box img").attr("src", src);
-
-    $(".popup").fadeIn();
-
-    $("#overlay").fadeIn();
-  });
-
-  $(".close").click(function () {
-    $(".popup").fadeOut();
-
-    $("#overlay").fadeOut();
-  });
-
-  $("#overlay").click(function () {
-    $(".popup").fadeOut();
-
-    $(this).fadeOut();
-  });
-
   // card slider
-    $(".card_slider").slick({
+  $(".card_slider").slick({
     slidesToShow: 1,
 
     slidesToScroll: 1,
@@ -240,30 +228,31 @@ $(document).ready(function () {
 
   $(".interior_slider").slick({
     slidesToShow: 1,
-
     slidesToScroll: 1,
-
     arrows: true,
-
-    fade: true,
-
+    infinite: true,
     asNavFor: ".interior_slider_thumb",
   });
 
   $(".interior_slider_thumb").slick({
     slidesToShow: 3,
-
     slidesToScroll: 1,
-
     asNavFor: ".interior_slider",
-
     centerMode: true,
-
     focusOnSelect: true,
-
     arrows: false,
-
-    centerMode: true,
+    infinite: true,
+    variableWidth: true,
+    responsive: [
+    {
+      breakpoint: 990,
+      settings: {
+        variableWidth: false,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+      },
+    },
+    ]
   });
 
 
@@ -306,7 +295,7 @@ $(document).ready(function () {
     $(".interior_slider .slick-next").html("<i class='fa fa-angle-right'></i>");
 
     if (wd < 990) {
-    
+
     } else {
       $(".house_slider").slick("refresh");
       $(window).resize(function () {
@@ -318,6 +307,7 @@ $(document).ready(function () {
 
   if (wd < 990) {
     $(".label_image").attr("src","https://tridentmodular.com/wp-content/themes/trident/img/label-image-mobile.jpg");
+    $(".interior_slider").slick("refresh");
   } 
   // Dynamic add class
 
@@ -347,9 +337,9 @@ $(document).ready(function () {
       $(target).toggleClass("checked");
     }
   });
-  $('.clear').click(function(e){
+  $('.clear').click(function(e) {
     e.preventDefault();
-        $('.catalog_section form')[0].reset();
+    location.reload();
   });
   galleryFilter();
   sortByPrice();
