@@ -66,6 +66,7 @@
         
         <div class="col-lg-2 col-sm-6 col-6 position-relative">
           <a href="#" class="burger example5"><span></span></a>
+          <a href="#" class="filter_burger example5"><span></span></a>
 
           <div class="yellow_box">
             <a href="<?php echo $header['order_header_link']; ?>">

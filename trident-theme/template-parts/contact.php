@@ -52,7 +52,7 @@
       <div class="col-lg-7 ml-auto pr-0">
 
         <div class="map_box">
-
+          <h1><?php the_title(); ?></h1>
           <?php the_content(); ?>
 
           <a href="#form_section" class="read_more"

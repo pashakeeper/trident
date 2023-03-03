@@ -199,6 +199,21 @@ function my_acf_op_init()
 			)
 		);
 	}
+	// Check function exists.
+	if (function_exists('acf_add_options_page')) {
+
+		// Register options page.
+		$option_page = acf_add_options_page(
+			array(
+				'page_title' => __('Item Adv Settings'),
+				'menu_title' => __('Item Adv Settings'),
+				'menu_slug' => 'theme-adv-settings',
+				'capability' => 'edit_posts',
+				'redirect' => false,
+				'icon_url' => 'dashicons-welcome-view-site',
+			)
+		);
+	}
 }
 add_action('wp_ajax_filterposts', 'ajax_filterposts_handler');
 add_action('wp_ajax_nopriv_filterposts', 'ajax_filterposts_handler');
@@ -228,7 +243,7 @@ function ajax_filterposts_handler()
 			foreach ($fields as $field): ?>
 				<div class="col-lg-4">
 					<div class="galery_box">
-						<img data-fancybox="<?php echo $field['galery_image']; ?>" src="<?php echo $field['galery_image']; ?>" alt="">
+						<img data-fancybox="gallery" src="<?php echo $field['galery_image']; ?>" alt="">
 					</div>
 				</div>
 
@@ -279,7 +294,6 @@ function ajax_filterposts_handler()
 				array(
 					'key' => 'item_info_item_technical_details_usable_area',
 					'value' => $area_from,
-					'type' => 'numeric',
 					'compare' => '>=',
 				)
 			));
@@ -289,7 +303,6 @@ function ajax_filterposts_handler()
 				array(
 					'key' => 'item_info_item_technical_details_usable_area',
 					'value' => $area_to,
-					'type' => 'numeric',
 					'compare' => '<=',
 				)
 			));
@@ -299,7 +312,6 @@ function ajax_filterposts_handler()
 				array(
 					'key' => 'item_info_item_technical_details_number_of_bedrooms',
 					'value' => $number_rooms_from,
-					'type' => 'numeric',
 					'compare' => '>=',
 				)
 			));
@@ -309,7 +321,6 @@ function ajax_filterposts_handler()
 				array(
 					'key' => 'item_info_item_technical_details_number_of_bedrooms',
 					'value' => $number_rooms_to,
-					'type' => 'numeric',
 					'compare' => '<=',
 				)
 			));
@@ -319,7 +330,6 @@ function ajax_filterposts_handler()
 				array(
 					'key' => 'item_info_item_technical_details_number_of_bathrooms',
 					'value' => $number_of_bathrooms,
-					'type' => 'numeric',
 					'compare' => '==',
 				)
 			));
@@ -336,11 +346,11 @@ function ajax_filterposts_handler()
 				$the_query->the_post(); ?>
 
 				<div class="col-lg-6 item_box">
-					<img src="<?php echo get_the_post_thumbnail_url(); ?>" alt="">
+					<a href="<?php the_permalink(); ?>"><img src="<?php echo get_the_post_thumbnail_url(); ?>" alt=""></a>
 					<h3 class="house_name"> <a href="<?php the_permalink(); ?>"> <?php the_title(); ?></a></h3>
-					<p class="house_description">
+					<div class="house_description">
 						<?php the_excerpt(); ?>
-					</p>
+					</div>
 				</div>
 
 			<?php  endwhile;?>
@@ -368,38 +378,38 @@ function ajax_filterposts_handler()
 			</div> -->
 		<?php endif; 
 		wp_reset_postdata(); ?> 
-		<?php else:
-			echo 'No posts found';
-		endif;
+	<?php else:
+		echo 'No posts found';
+	endif;
 
-		die();
-	}
+	die();
+}
 
 
-	add_action('wp_ajax_sortbyprice', 'ajax_sortbyprice_handler');
-	add_action('wp_ajax_nopriv_sortbyprice', 'ajax_sortbyprice_handler');
+add_action('wp_ajax_sortbyprice', 'ajax_sortbyprice_handler');
+add_action('wp_ajax_nopriv_sortbyprice', 'ajax_sortbyprice_handler');
 
-	function ajax_sortbyprice_handler()
-	{
-		$sortbyprice = esc_attr($_POST['sortbyprice']);
-		$args = array(
-			'post_type' => 'product',
-			'post_status' => 'publish',
-			'posts_per_page' => -1,
-			'order' => 'ASC',
-			'orderby' => 'item_price',
-			'meta_query' => array(
-				'relation' => 'AND',
-			)
-		);
-		array_push($args['meta_query'], array(
-			array(
-				'key' => 'item_price',
-				'value' => array(1, 999999999),
-				'type' => 'numeric',
-				'compare' => 'BETWEEN',
-			)
-		));
+function ajax_sortbyprice_handler()
+{
+	$sortbyprice = esc_attr($_POST['sortbyprice']);
+	$args = array(
+		'post_type' => 'product',
+		'post_status' => 'publish',
+		'posts_per_page' => -1,
+		'order' => 'ASC',
+		'orderby' => 'item_price',
+		'meta_query' => array(
+			'relation' => 'AND',
+		)
+	);
+	array_push($args['meta_query'], array(
+		array(
+			'key' => 'item_price',
+			'value' => array(1, 999999999999),
+			'type' => 'numeric',
+			'compare' => 'BETWEEN',
+		)
+	));
 		// array_push($args['meta_query'], array(
 		// 	array(
 		// 		'key' => 'item_price',
@@ -408,29 +418,172 @@ function ajax_filterposts_handler()
 		// 		'compare' => '<=',
 		// 	)
 		// ));
-		if ($category != null) {
-			$args['category_name'] = $category;
-		}
-		$posts = 'No posts found.';
-
-		$the_query = new WP_Query($args);
-		if ($the_query->have_posts()):
-			while ($the_query->have_posts()):
-				$the_query->the_post(); ?>
-
-				<div class="col-lg-6 item_box">
-					<img src="<?php echo get_the_post_thumbnail_url(); ?>" alt="">
-					<h3 class="house_name"> <a href="<?php the_permalink(); ?>"> <?php the_title(); ?></a></h3>
-					<p class="house_description">
-						<?php the_excerpt(); ?>
-					</p>
-				</div>
-
-			<?php  endwhile;
-			wp_reset_postdata();
-		else:
-			echo 'No posts found';
-		endif;
-
-		die();
+	if ($category != null) {
+		$args['category_name'] = $category;
 	}
+	$posts = 'No posts found.';
+
+	$the_query = new WP_Query($args);
+	if ($the_query->have_posts()):
+		while ($the_query->have_posts()):
+			$the_query->the_post(); ?>
+
+			<div class="col-lg-6 item_box">
+				<a href="<?php the_permalink(); ?>"><img src="<?php echo get_the_post_thumbnail_url(); ?>" alt=""></a>
+				<h3 class="house_name"> <a href="<?php the_permalink(); ?>"> <?php the_title(); ?></a></h3>
+				<div class="house_description">
+					<?php the_excerpt(); ?>
+				</div>
+			</div>
+
+		<?php  endwhile;
+		wp_reset_postdata();
+	else:
+		echo 'No posts found';
+	endif;
+
+	die();
+}
+add_action('wp_ajax_sortbyprice_down', 'ajax_sortbyprice_down_handler');
+add_action('wp_ajax_nopriv_sortbyprice_down', 'ajax_sortbyprice_down_handler');
+
+function ajax_sortbyprice_down_handler()
+{
+	$sortbyprice_down = esc_attr($_POST['sortbyprice_down']);
+	$args = array(
+		'post_type' => 'product',
+		'post_status' => 'publish',
+		'posts_per_page' => -1,
+		'order' => 'DESC',
+		'orderby' => 'item_price',
+		'meta_query' => array(
+			'relation' => 'AND',
+		)
+	);
+	array_push($args['meta_query'], array(
+		array(
+			'key' => 'item_price',
+			'value' => 99999999999,
+			'type' => 'numeric',
+			'compare' => '<=',
+		)
+	));
+		// array_push($args['meta_query'], array(
+		// 	array(
+		// 		'key' => 'item_price',
+		// 		'value' => array(999999999, 1),
+		// 		'type' => 'numeric',
+		// 		'compare' => 'NOT BETWEEN',
+		// 	)
+		// ));
+	if ($category != null) {
+		$args['category_name'] = $category;
+	}
+	$posts = 'No posts found.';
+
+	$the_query = new WP_Query($args);
+	if ($the_query->have_posts()):
+		while ($the_query->have_posts()):
+			$the_query->the_post(); ?>
+
+			<div class="col-lg-6 item_box">
+				<a href="<?php the_permalink(); ?>"><img src="<?php echo get_the_post_thumbnail_url(); ?>" alt=""></a>
+				<h3 class="house_name"> <a href="<?php the_permalink(); ?>"> <?php the_title(); ?></a></h3>
+				<div class="house_description">
+					<?php the_excerpt(); ?>
+				</div>
+			</div>
+
+		<?php  endwhile;
+		wp_reset_postdata();
+	else:
+		echo 'No posts found';
+	endif;
+
+	die();
+}
+function wp_breadcrumbs(){
+
+// получаем номер текущей страницы
+	$pageNum = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
+
+$separator = ' > '; //  »
+
+// если главная страница сайта
+if( is_front_page() ){
+
+	if( $pageNum > 1 ) {
+		echo '<a href="' . site_url() . '">Home</a>' . $separator . '<span>' . $pageNum .'</span>' . '-page';
+	} else {
+		echo 'You now at home page';
+	}
+
+} else { // не главная
+
+	echo '<a href="' . site_url() . '">Home</a>' . $separator;
+
+
+if( is_single() ){ // записи
+
+	 the_title();
+
+} elseif ( is_page() ){ // страницы WordPress 
+
+	'<span>' . the_title() . '</span>';
+
+} elseif ( is_category() ) {
+
+
+} elseif( is_tag() ) {
+
+	'<span>' . single_tag_title() . '</span>';
+
+} elseif ( is_day() ) { // архивы (по дням)
+
+	echo '<a href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a>' . $separator;
+	echo '<a href="' . get_month_link(get_the_time('Y'),get_the_time('m')) . '">' . get_the_time('F') . '</a>' . $separator;
+	echo get_the_time('d');
+
+} elseif ( is_month() ) { // архивы (по месяцам)
+
+	echo '<a href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a>' . $separator;
+	echo get_the_time('F');
+
+} elseif ( is_year() ) { // архивы (по годам)
+
+	echo get_the_time('Y');
+
+} elseif ( is_author() ) { // архивы по авторам
+
+	global $author;
+	$userdata = get_userdata($author);
+	echo 'Опубликовал(а) ' . $userdata->display_name;
+
+} elseif ( is_404() ) { // если страницы не существует
+
+	echo 'Ошибка 404';
+
+}
+
+if ( $pageNum > 1 ) { // номер текущей страницы
+	echo ' (' . $pageNum . 'page)';
+}
+
+}
+global $post;
+// если у текущей страницы существует родительская
+if ( $post->post_parent ) {
+
+$parent_id  = $post->post_parent; // присвоим в переменную
+$breadcrumbs = array(); 
+
+while ( $parent_id ) {
+	$page = get_page( $parent_id );
+	$breadcrumbs[] = '<a class="breadcrumbs_link" href="' . get_permalink( $page->ID ) . '">' . get_the_title( $page->ID ) . '</a>';
+	$parent_id = $page->post_parent;
+}
+
+echo join( $separator, array( $breadcrumbs ) ) . $separator;
+
+}
+}

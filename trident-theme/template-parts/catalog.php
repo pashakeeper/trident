@@ -31,57 +31,35 @@
 <!-- catalog section  -->
 
 <section class="catalog_section" id="catalog_section">
-
   <div class="container">
-
     <div class="row">
-
       <div class="col-lg-12 d-flex flex-wrap align-items-center pre_header">
-
-        <h2>Catalog</h2>
-
+        <h1><?php the_title(); ?></h1>
         <p>You can choose design that you like</p>
-
         <div class="moblie_triger">
-
           <div class="mob_filter">FILTER</div>
-
           <div class="sort">
             Sort by price <div class="fa fa-angle-down"></div>
           </div>
-
         </div>
-
       </div>
-
+      <div class="col-lg-12">
+        <div class="breadcrumbs w-100 mt-4 mb-0">
+          <?php wp_breadcrumbs(); ?>
+        </div>
+      </div>
       <div class="col-lg-3 filter_box">
-
-        <div class="filter_head">Search </div>
-
-        <div class="filter_close"><img src="<?php echo get_template_directory_uri(); ?>/img/close_burger.svg"></div>
-
+        <div class="filter_head">Search </div>        
         <form method="POST">
-
           <div class="fiter_header">House type</div>
-
           <div class="form_box checkboxes">
-
             <?php $house_type = get_categories([
-
               'taxonomy' => 'category',
-
               'parent' => '11',
-
               'hide_empty' => false,
-
               'orderby' =>   'ASD',
-
-
-
             ]);
-
             ?>
-
             <?php 
             $args = [
               'parent'         => 11,
@@ -93,7 +71,6 @@
             <?php foreach ($terms as $term): ?>             
 
               <input class="house_type" type="checkbox" id="<?php echo $term->slug ?>" value="<?php echo $term->name ?>" name="<?php echo $term->name ?>">
-
               <label for="<?php echo $term->slug ?>"><?php echo $term->name ?></label>
             <?php endforeach; ?>
 
@@ -133,56 +110,36 @@
           <div class="fiter_header">Number of rooms</div>
 
           <div class="form_box range">
-
             <input type="number" placeholder="From" min="1" id="rooms_from" max="10000"> - <input id="rooms_to" type="number" placeholder="To" min="1"
-
             max="10000">
-
           </div>
-
           <div class="fiter_header">Number of bathrooms</div>
-
           <div class="form_box num">
-
             <input type="number" id="number_rooms_to" placeholder="Choose number" min="1" max="100">
-
           </div>
-
           <div class="fiter_header">Garage</div>
-
           <div class="form_box garage">
             <input type="checkbox" id="yes" value="yes">
             <label for="yes">Yes</label>
             <input type="checkbox" id="no" value="NO">
             <label for="no">No</label>
-
           </div>
-
           <div class="action_row">
-
             <a href="#" class="clear">Clear</a>
-
             <button type="submit" class="filter">Filter</button>
-
           </div>
-
         </form>
-
       </div>
-
       <div class="col-lg-9">
-
         <div class="sort">
           Sort by price <div class="fa fa-angle-down"></div>
         </div>
-
         <div class="row">
-
           <?php
           $currentPage = (get_query_var("paged")) ? get_query_var("paged") : 1;
           $args = array(
 
-            'posts_per_page' => 2,
+            'posts_per_page' => 6,
             'post_type' => 'product',
             'category_name' => '',
             'paged'          => $currentPage,
@@ -206,43 +163,52 @@
               ?>
 
               <div class="col-lg-6 item_box">
-
-                <img src="<?php echo get_the_post_thumbnail_url(); ?>" alt="">
+                <a href="<?php the_permalink(); ?>">
+                  <img src="<?php echo get_the_post_thumbnail_url(); ?>" alt="">
+                </a>
 
                 <h3 class="house_name"> <a href="<?php the_permalink(); ?>"> <?php the_title(); ?></a></h3>
 
-                <p class="house_description">
+                <div class="house_description">
 
                   <?php the_excerpt(); ?>
 
-                </p>
+                </div>
 
               </div>
 
               <?php array_push($all_posts, $fields); endwhile;?>
 
               <?php wp_reset_postdata(); ?>
-              <div class="pagination">
-           <?php
-           $big = 999999999;
-           echo paginate_links( array(
-            'base' => str_replace( $big, '%#%', get_pagenum_link( $big ) ),
-            'format' => '?paged=%#%',
-            'current' => max( 1, get_query_var('paged') ),
-            'total' => $the_query->max_num_pages,
-            'mid_size'           => 1,
-            'end_size'           => 0,
-            'prev_text' => '<i class="fa fa-angle-left"></i>',
-            'next_text' => '<i class="fa fa-angle-right"></i>'
-          ) );
-          ?>
-        </div>
+              <?php 
+              $posts_quant = wp_count_posts($type = 'product', $perm = '');
+              $published_posts = $posts_quant->publish;
+              ?>
+              <?php if ($published_posts > 6): ?>
+                <div class="pagination">
+                 <?php
+                 $big = 999999999;
+                 echo paginate_links( array(
+                  'base' => str_replace( $big, '%#%', get_pagenum_link( $big ) ),
+                  'format' => '?paged=%#%',
+                  'current' => max( 1, get_query_var('paged') ),
+                  'total' => $the_query->max_num_pages,
+                  'mid_size'           => 1,
+                  'end_size'           => 0,
+                  'prev_text' => '<i class="fa fa-angle-left"></i>',
+                  'next_text' => '<i class="fa fa-angle-right"></i>'
+                ) );
+                ?>
+              </div>
+            <?php else: ?>
+            <?php endif; ?>
+
 
           <?php  endif; ?>
 
 
-          </div>
-          
+        </div>
+
       </div>
     </div>
   </div>

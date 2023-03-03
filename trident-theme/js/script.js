@@ -4,50 +4,50 @@ $(document).ready(function () {
   $(".burger").click(function (e) {
     e.preventDefault();
     $(this).toggleClass("active");
-
     $(".menu_box").toggleClass("active");
-
-    $("body").toggleClass("menu_open");
+    $("body").toggleClass("menu_open");    
   });
 
   //   Sliders
 
   $(".slider").slick({
     infinite: true,
-
     slidesToShow: 1,
-
     slidesToScroll: 1,
-
     lazyLoad: "ondemand",
-
     autoplay: true,
-
+    speed: 500,
+    fade: true,
+    cssEase: 'linear',
     autoplaySpeed: 3000,
-
     prevArrow: $(".prev"),
-
+    nextArrow: $(".next"),
+  });
+  $(".galery_slider").slick({
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    lazyLoad: "ondemand",
+    // autoplay: true,
+    speed: 500,
+    cssEase: 'linear',
+    autoplaySpeed: 3000,
+    prevArrow: $(".prev"),
     nextArrow: $(".next"),
   });
 
   $(".house_slider.garden").slick({
     infinite: true,
-
     slidesToShow: 3,
-
     slidesToScroll: 1,
-
     lazyLoad: "ondemand",
-
     prevArrow: $(".house_prev_garden"),
-
     nextArrow: $(".house_next_garden"),
-
     responsive: [
     {
       breakpoint: 990,
       settings: {
-        slidesToShow: 1,
+        slidesToShow: 2,
         slidesToScroll: 1,
         lazyLoad: "ondemand",
         arrows: true,
@@ -56,6 +56,28 @@ $(document).ready(function () {
         nextArrow: $(".house_next_garden"),
       },
     },
+    {
+      breakpoint: 760,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        lazyLoad: "ondemand",
+        arrows: true,
+        prevArrow: $(".house_prev_garden"),
+        nextArrow: $(".house_next_garden"),
+      },
+    },
+    {
+      breakpoint: 599,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        lazyLoad: "ondemand",
+        arrows: true,
+        prevArrow: $(".house_prev_garden"),
+        nextArrow: $(".house_next_garden"),
+      },
+    }
     ],
   });
 
@@ -76,15 +98,83 @@ $(document).ready(function () {
     {
       breakpoint: 990,
       settings: {
-        slidesToShow: 1,
+        slidesToShow: 2,
         slidesToScroll: 1,
         lazyLoad: "ondemand",
-
         prevArrow: $(".house_prev"),
-
         nextArrow: $(".house_next"),
       },
     },
+    {
+      breakpoint: 760,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        lazyLoad: "ondemand",
+        arrows: true,
+        prevArrow: $(".house_prev"),
+        nextArrow: $(".house_next"),
+      },
+    },
+    {
+      breakpoint: 599,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        lazyLoad: "ondemand",
+        arrows: true,
+        prevArrow: $(".house_prev"),
+        nextArrow: $(".house_next"),
+      },
+    }
+    ],
+  });
+  $(".house_slider.third").slick({
+    infinite: true,
+
+    slidesToShow: 3,
+
+    slidesToScroll: 1,
+
+    lazyLoad: "ondemand",
+
+    prevArrow: $(".third_prev"),
+
+    nextArrow: $(".third_next"),
+
+    responsive: [
+    {
+      breakpoint: 990,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        lazyLoad: "ondemand",
+        prevArrow: $(".third_prev"),
+        nextArrow: $(".third_next"),
+      },
+    },
+    {
+      breakpoint: 760,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        lazyLoad: "ondemand",
+        arrows: true,
+        prevArrow: $(".third_prev"),
+        nextArrow: $(".third_next"),
+      },
+    },
+    {
+      breakpoint: 599,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        lazyLoad: "ondemand",
+        arrows: true,
+        prevArrow: $(".third_prev"),
+        nextArrow: $(".third_next"),
+      },
+    }
     ],
   });
 
@@ -99,7 +189,7 @@ $(document).ready(function () {
     centerMode: true,
     responsive: [
     {
-      breakpoint: 990,
+      breakpoint: 994,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -160,32 +250,6 @@ $(document).ready(function () {
     },
     ],
   });
-  $(".recent ").slick({
-    infinite: true,
-
-    slidesToShow: 3,
-
-    slidesToScroll: 1,
-
-    lazyLoad: "ondemand",
-
-    prevArrow: $(".house_prev_garden_recomend"),
-
-    nextArrow: $(".house_next_garden_recomend"),
-    responsive: [
-    {
-      breakpoint: 990,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        lazyLoad: "ondemand",
-        arrows: true,
-        prevArrow: $(".house_prev_garden_recomend"),
-        nextArrow: $(".house_next_garden_recomend"),
-      },
-    },
-    ],
-  });
 
   //   Change image in download section
 
@@ -193,8 +257,14 @@ $(document).ready(function () {
 
   if (wd < 990) {
     $(".download_image").attr("src","https://tridentmodular.com/wp-content/themes/trident/img/download_image_mobile.png");
-    $(".download_image").attr("src","http://wp/wp-content/themes/trident/img/download_image_mobile.png");
+    // $(".download_image").attr("src","http://wp/wp-content/themes/trident/img/download_image_mobile.png");
   }
+  $(window).resize(function(){
+    if (wd < 994) {
+      $(".download_image").attr("src","https://tridentmodular.com/wp-content/themes/trident/img/download_image_mobile.png");
+      // $(".download_image").attr("src","http://wp/wp-content/themes/trident/img/download_image_mobile.png");
+    }
+  })
 
   //   Filter selects
 
@@ -204,13 +274,9 @@ $(document).ready(function () {
   // card slider
   $(".card_slider").slick({
     slidesToShow: 1,
-
     slidesToScroll: 1,
-
     arrows: true,
-
     fade: true,
-
     asNavFor: ".card_slider_thumb",
   });
 
@@ -230,7 +296,7 @@ $(document).ready(function () {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: true,
-    infinite: true,
+    infinite: false,
     asNavFor: ".interior_slider_thumb",
   });
 
@@ -258,19 +324,26 @@ $(document).ready(function () {
 
   $(".mob_filter").click(function () {
     $(".filter_head").text("FILTER");
-
     $(".filter_box").toggleClass("active");
+    $(".filter_burger").toggleClass("filter_active");
+    $('.burger').hide();
   });
 
-  $(".filter_close").click(function () {
+  $(".filter_burger").click(function () {
     $(".filter_box").toggleClass("active");
-
-    console.log("click");
+    $(this).toggleClass("filter_active");
+    $(this).removeClass('active');
+    $('.burger').show();
   });
 
   $(".filter").click(function () {
     $(".filter_box").toggleClass("active");
   });
+
+  $('.galery_section form').scrollLeft();
+
+
+
 
   // PLay video
 
@@ -471,28 +544,56 @@ function filterCatalog() {
 
 
 function sortByPrice() {
-  $('.sort').click(function () {
-    $(this).toggleClass('active');
-    let content = $(".catalog_section .col-lg-9 .row");
-    data = {
-      action: 'sortbyprice'
-    }
-    $.ajax({
-      url: "/wp-admin/admin-ajax.php",
-      data: data,
-      type: "POST",
-      beforeSend: function (xhr) {
-        $(".loader").show();
-        console.log(xhr);
-      },
-      success: function (data) {
-        console.log(data);
-        if (data) {
-          $(content).html(data +'<div class="loader"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>');
-        } else {
-          console.log("GONDone");
-        }
-      },
-    });
+  jQuery.fn.clickToggle = function(a, b) {
+  return this.on("click", function(ev) { [b, a][this.$_io ^= 1].call(this, ev) })
+};
+  $('.sort').clickToggle(function(ev) {   
+   $(this).toggleClass('active');
+   let content = $(".catalog_section .col-lg-9 .row");
+   data = {
+    action: 'sortbyprice'
+  }
+  $.ajax({
+    url: "/wp-admin/admin-ajax.php",
+    data: data,
+    type: "POST",
+    beforeSend: function (xhr) {
+      $(".loader").show();
+      console.log(xhr);
+    },
+    success: function (data) {
+      console.log(data);
+      if (data) {
+        $(content).html(data +'<div class="loader"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>');
+      } else {
+        console.log("GONDone");
+      }
+    },
   });
+},
+function(ev) {
+  $(this).toggleClass('active');
+  let content = $(".catalog_section .col-lg-9 .row");
+  data = {
+    action: 'sortbyprice_down'
+  }
+  $.ajax({
+    url: "/wp-admin/admin-ajax.php",
+    data: data,
+    type: "POST",
+    beforeSend: function (xhr) {
+      $(".loader").show();
+      console.log(xhr);
+    },
+    success: function (data) {
+      console.log(data);
+      if (data) {
+        $(content).html(data +'<div class="loader"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>');
+      } else {
+        console.log("GONDone");
+      }
+    },
+  });
+});
 }
+

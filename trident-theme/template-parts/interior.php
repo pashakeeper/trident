@@ -36,10 +36,15 @@
 
       <div class="col-lg-12 d-flex flex-wrap align-items-center pre_header">
 
-        <h2>Interior</h2>
+        <h1><?php the_title(); ?></h1>
 
         <p>You can choose design that you like</p>
 
+      </div>
+      <div class="col-lg-12">
+        <div class="breadcrumbs w-100 mt-4 mb-0">
+          <?php wp_breadcrumbs(); ?>
+        </div>
       </div>
 
       <?php $interior_box = get_field('interior_box');?>
@@ -80,7 +85,7 @@
 
               </div>
 
-              <div class="col-lg-6">
+              <div class="col-lg-6 pr-0">
 
                 <div class="interior_slider">
 

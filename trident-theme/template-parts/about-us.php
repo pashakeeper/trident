@@ -35,7 +35,10 @@
     <div class="row">
 
       <div class="col-lg-6">
-
+        <h1><?php the_title(); ?></h1>
+        <div class="breadcrumbs">
+          <?php wp_breadcrumbs(); ?>
+        </div>
         <?php the_content(); ?>
 
       </div>
@@ -68,17 +71,17 @@
 
       <?php foreach($small_boxes as $adv_box): ?>
 
-      <div class="col-lg-3">
+        <div class="col-lg-3">
 
-        <div class="advantages_box">
+          <div class="advantages_box">
 
-          <img src="<?php echo $adv_box["smal_boxes_image"] ?>" alt="" />
+            <img src="<?php echo $adv_box["smal_boxes_image"] ?>" alt="" />
 
-          <?php echo $adv_box["smal_boxes_content"] ?>
+            <?php echo $adv_box["smal_boxes_content"] ?>
+
+          </div>
 
         </div>
-
-      </div>
 
       <?php endforeach; ?>
 
@@ -114,11 +117,11 @@
 
         <div class="accordion" id="accordionExample">
 
-        <?php foreach($small_boxes["faq_item"] as $faq_itm): ?>
+          <?php foreach($small_boxes["faq_item"] as $faq_itm): ?>
 
-          <div class="accordion-item">
+            <div class="accordion-item">
 
-            <div class="faq_title collapsed" class="accordion-button" type="button" data-bs-toggle="collapse"
+              <div class="faq_title collapsed" class="accordion-button" type="button" data-bs-toggle="collapse"
 
               data-bs-target="#collapse<?php echo $faq_itm['faqid'] ?>" aria-expanded="true" aria-controls="collapseOne">
 
@@ -136,15 +139,15 @@
 
           </div>
 
-          <?php endforeach; ?>
-
-        </div>
+        <?php endforeach; ?>
 
       </div>
 
     </div>
 
   </div>
+
+</div>
 
 </section>
 
@@ -168,28 +171,28 @@
 
         <a href="<?php echo $download_block['download_link_order'] ?>" class="read_more">Order now <img
 
-            src="<?php echo get_template_directory_uri(); ?>/img/arrow_white.svg" alt=""></a>
+          src="<?php echo get_template_directory_uri(); ?>/img/arrow_white.svg" alt=""></a>
 
-      </div>
+        </div>
 
-      <div class="col-lg-7 d-flex align-items-center justify-content-center">
+        <div class="col-lg-7 d-flex align-items-center justify-content-center">
 
-        <a href="<?php echo $download_block['download_file'] ?>" class="download" download><img
+          <a href="<?php echo $download_block['download_file'] ?>" class="download" download><img
 
             src="<?php echo get_template_directory_uri(); ?>/img/download_icon.svg" alt=""></a>
 
-        <img class="download_image" src="<?php echo get_template_directory_uri(); ?>/img/download_image.png" alt="">
+            <img class="download_image" src="<?php echo get_template_directory_uri(); ?>/img/download_image.png" alt="">
+
+          </div>
+
+        </div>
 
       </div>
 
-    </div>
+    </section>
 
-  </div>
-
-</section>
-
-<!-- end of download section -->
+    <!-- end of download section -->
 
 
 
-<?php get_footer(); ?>
+    <?php get_footer(); ?>
